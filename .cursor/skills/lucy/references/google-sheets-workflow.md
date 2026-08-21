@@ -41,12 +41,35 @@ https://docs.google.com/spreadsheets/d/<SPREADSHEET_ID>/edit#gid=<TAB_GID>
 2. Загрузить CSV в чат
 3. Заполнить и вернуть обновлённый CSV
 
-## Будущее: полная автоматизация
+## Запись in-place: mcp-google-sheets
 
-Для записи в ячейки без ручного импорта нужен один из вариантов:
+Рекомендуемый MCP для прямой записи в ячейки: [diitrashed/mcp-google-sheets](https://github.com/diitrashed/mcp-google-sheets).
 
-- Google Sheets MCP с scope на редактирование
-- Service account с ролью **Editor** на папку/файл шаблона
-- Apps Script webhook (если команда готова поддерживать)
+### Установка
 
-До появления записи in-place skill **всегда** сохраняет CSV и даёт инструкцию по импорту.
+```bash
+bash scripts/install-mcp-google-sheets.sh
+```
+
+Или вручную — см. `.cursor/mcp.json.example`.
+
+### Credentials
+
+1. JSON-ключ сервисного аккаунта → `~/mcp-google-sheets/credentials/service-account.json`
+2. Расшарить таблицу/папку с шаблонами на `client_email` из JSON с ролью **Editor**
+3. Перезапустить MCP в Cursor (Settings → MCP)
+
+### Инструменты для Lucy
+
+| Задача | Tool |
+|--------|------|
+| Прочитать вкладку | `read_sheet`, `read_range` |
+| Записать диапазон | `write_range` |
+| Одна ячейка | `update_cell` |
+| Список вкладок | `list_sheets` |
+
+Spreadsheet ID из URL: `https://docs.google.com/spreadsheets/d/<ID>/edit`
+
+### Fallback
+
+Если Sheets MCP недоступен или нет credentials — skill **всегда** сохраняет CSV и даёт инструкцию по импорту.
