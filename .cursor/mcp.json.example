@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "google-sheets": {
+      "command": "node",
+      "args": ["/absolute/path/to/mcp-google-sheets/dist/index.js"],
+      "env": {
+        "SERVICE_ACCOUNT_PATH": "/absolute/path/to/mcp-google-sheets/credentials/service-account.json"
+      }
+    }
+  }
+}
