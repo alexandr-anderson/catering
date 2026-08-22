@@ -1,0 +1,4 @@
+{
+  "name": "catering",
+  "install": "bash .cursor/scripts/install-chrome.sh"
+}
